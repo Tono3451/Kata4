@@ -5,7 +5,8 @@ public enum League {
     LALIGA("La Liga"),
     LIGUE1("Ligue 1"),
     BUNDESLIGA("Bundesliga"),
-    SERIAA("Serie A");
+    SERIAA("Serie A"),
+    UNKNOWN("Unknown League");
 
     private final String text;
 

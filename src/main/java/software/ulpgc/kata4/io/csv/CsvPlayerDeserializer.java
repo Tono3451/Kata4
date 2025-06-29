@@ -21,7 +21,7 @@ public class CsvPlayerDeserializer implements PlayerDeserializer {
             case "it Serie A" -> League.SERIAA;
             case "fr Ligue 1" -> League.LIGUE1;
             case "de Bundesliga" -> League.BUNDESLIGA;
-            default -> null;
+            default -> League.UNKNOWN;
         };
     }
 
