@@ -1,5 +1,7 @@
 package software.ulpgc.kata4;
 
+import software.ulpgc.kata4.control.Command;
+import software.ulpgc.kata4.control.InsertPlayersInDatabaseCommand;
 import software.ulpgc.kata4.control.ToggleChartCommand;
 import software.ulpgc.kata4.control.BarChartCreator;
 import software.ulpgc.kata4.view.MainFrame;

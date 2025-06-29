@@ -2,11 +2,15 @@ package software.ulpgc.kata4.control;
 
 import software.ulpgc.kata4.io.csv.CsvPlayerDeserializer;
 import software.ulpgc.kata4.io.FilePlayerLoader;
+import software.ulpgc.kata4.io.sqlDatabase.DatabasePlayerLoader;
+import software.ulpgc.kata4.io.sqlDatabase.PlayerDatabaseConnection;
 import software.ulpgc.kata4.model.BarChart;
 import software.ulpgc.kata4.model.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +20,11 @@ public class BarChartCreator {
     private final List<Player> players;
 
     public BarChartCreator() throws IOException {
-        File file = new File("D:/clase/Asignaturas_tercero/is2/kata3/dataset/players_data-2024_2025.csv");
-        this.players = new FilePlayerLoader(file, new CsvPlayerDeserializer()).load();
+        try (Connection connection = PlayerDatabaseConnection.connect()) {
+            players = new DatabasePlayerLoader(connection).load();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<BarChart> getBarCharts() {
